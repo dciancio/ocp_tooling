@@ -15,7 +15,7 @@
 
 - Each script will have a usage explaining the options to use when executing them.
 
-## Using the `oc_rc` environment script to source various oc environments
+## Quickly switching between oc environments
 
 - Include the contents of this script or source it from your existing `$HOME/.bashrc`
 
@@ -23,7 +23,7 @@
 
 - Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `$HOME/cluster-<mycluster>` directory.
 
-- Modify the script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername.
+- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername.
 
 - The prompt will automatically include the current `CLUSTERNAME` that you are switched to.
 

@@ -32,7 +32,7 @@ omcdownload.sh
 
 - The prompt will automatically be changed to include the current `CLUSTERNAME` that you are switched to.
 
-- The original admin `KUBECONFIG` authentication file found in `$HOME/cluster-mycluster` is copied under a temporary `KUBECONFIG` file in /tmp for your current `SESSIONID`. Therefore, the default `$HOME/.kube/config` file is never modified.
+- The original admin `KUBECONFIG` authentication file found in `$HOME/cluster-mycluster` is copied under a temporary `KUBECONFIG` file in `/tmp` for your current `SESSIONID`. Therefore, the default `$HOME/.kube/config` file is never modified.
 
-- You can optionally choose to login using kubeadmin or any other user relying on Oauth service and the temporary `KUBECONFIG` will contain additional contexts reflecting each user login.
+- You can optionally choose to login using kubeadmin or any other user relying on Oauth service and the temporary `KUBECONFIG` in `/tmp` will contain additional contexts reflecting each user login.
 

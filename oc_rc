@@ -1,0 +1,36 @@
+
+# Show git branch name
+force_color_prompt=yes
+color_prompt=yes
+parse_git_branch() {
+ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+if [ "$color_prompt" = yes ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[00m\]\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]$ '
+  #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;42m\]\u@\h:\[\033[00m\]\[\033[01;44m\]\w\[\033[01;41m\]$(parse_git_branch)\[\033[00m\]$ '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)$ '
+fi
+unset color_prompt force_color_prompt
+
+# Do not ignore special characters when sorting directory/file lists
+export LC_COLLATE=C
+
+# Do not show single-quotes for directories/files with spaces
+export QUOTING_STYLE=literal
+
+SYSPATH=/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
+export PATH=$HOME/bin:$PATH
+
+set_kubeconfig() {
+SESSIONPID=$$
+cp $HOME/cluster-${CLUSTERNAME}/auth/kubeconfig /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
+export KUBECONFIG=/tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[00m\]\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\[\033[01;35m\] [${CLUSTERNAME}]\[\033[00m\]$ '
+source <(oc completion bash)
+}
+
+export SAVEPATH=$PATH
+
+alias mycluster='CLUSTERNAME="mycluster"; export PATH=~/cluster-${CLUSTERNAME}:$SAVEPATH; set_kubeconfig'
+

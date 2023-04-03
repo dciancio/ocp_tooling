@@ -1,12 +1,8 @@
-## Pre-requisites
-
-- Files in this repository should be installed in `$HOME/bin` directory, which should be included in your `$PATH`.
-
 ## Installation
 
 - Clone this git repo to your host.
 
-- Copy the files to `$HOME/bin` directory, which should be included in your `$PATH`.
+- Copy the files to a directory, which should be included in your `$PATH`.
 
 - Ensure the scripts are executable as follows:
   `chmod +x *.sh`
@@ -26,19 +22,17 @@ omcdownload.sh
 
 ## Quickly switching between oc environments
 
-- Include the contents of this script or source it from your existing `$HOME/.bashrc`
+- Include the contents of the `oc_rc` environment script by source it directly from your existing `$HOME/.bashrc`
 
-- Ensure that you copy the `auth` sub-directory containing the admin `KUBECONFIG` file for each cluster to your workstation under `$HOME/cluster-<mycluster>`.
+- Ensure that you copy the `auth` sub-directory containing the admin `KUBECONFIG` file for each OCP cluster to your workstation under a separate `$HOME/cluster-<mycluster>` directory.
 
-- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `$HOME/cluster-<mycluster>` directory. Make sure to run `ocp4download.sh` script from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries downloaded are specific to a cluster version.
+- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `$HOME/cluster-<mycluster>` directory. Make sure to run `ocp4download.sh` script from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries downloaded are specific to the cluster version found there.
 
-- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername.
+- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername. In my example, the `CLUSTERNAME` is `mycluster`.
 
-- The prompt will automatically include the current `CLUSTERNAME` that you are switched to.
+- The prompt will automatically be changed to include the current `CLUSTERNAME` that you are switched to.
 
-- This script relies on `KUBECONFIG` authentication method and never touches the `$HOME/.kube/config` file.
+- The original admin `KUBECONFIG` authentication file found in `$HOME/cluster-mycluster` is copied under a temporary `KUBECONFIG` file in /tmp for your current `SESSIONID`. Therefore, the default `$HOME/.kube/config` file is never modified.
 
-- It only modifies a copy of the original admin `KUBECONFIG` file used at cluster installation time.
-
-- You can optionally choose to login using kubeadmin or any other user relying on Oauth service and the `KUBECONFIG` will contain additional contexts reflecting this.
+- You can optionally choose to login using kubeadmin or any other user relying on Oauth service and the temporary `KUBECONFIG` will contain additional contexts reflecting each user login.
 

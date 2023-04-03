@@ -19,7 +19,7 @@
 
 - Include the contents of this script or source it from your existing `$HOME/.bashrc`
 
-- Ensure that you copy the auth sub-directory containing the admin KUBECONFIG file for each cluster to your workstation under `$HOME/cluster-<mycluster>`.
+- Ensure that you copy the auth sub-directory containing the admin `KUBECONFIG` file for each cluster to your workstation under `$HOME/cluster-<mycluster>`.
 
 - Modify the script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername.
 

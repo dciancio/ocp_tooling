@@ -13,7 +13,16 @@
 
 ## Executing shell scripts
 
+- The following scripts will execute against the current working directory. Ensure that you change to the correct directory prior to executing them.
+```
+ocp4download.sh
+ocp4install.sh
+ocp4uninstall.sh
+omcdownload.sh
+```
+
 - Each script will have a usage explaining the options to use when executing them.
+
 
 ## Quickly switching between oc environments
 
@@ -21,7 +30,7 @@
 
 - Ensure that you copy the `auth` sub-directory containing the admin `KUBECONFIG` file for each cluster to your workstation under `$HOME/cluster-<mycluster>`.
 
-- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `$HOME/cluster-<mycluster>` directory.
+- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `$HOME/cluster-<mycluster>` directory. Make sure to run `ocp4download.sh` script from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries downloaded are specific to a cluster version.
 
 - Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that `CLUSTERNAME` variable represents the unique OCP clustername.
 

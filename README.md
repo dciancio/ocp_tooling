@@ -11,10 +11,10 @@
 
 - The following scripts will execute against the current working directory. Ensure that you change to the correct directory prior to executing them.
 ```
-ocp4download.sh
-ocp4install.sh
-ocp4uninstall.sh
-omcdownload.sh
+ocp4download.sh       -> Download a version of OCP client and installer into current directory
+ocp4install.sh        -> Install OCP, optionally performing the installation at different stages, create-manifests, etc.
+ocp4uninstall.sh      -> Destroy an OCP cluster
+omcdownload.sh        -> Download OMC tool for analyzing must-gathers
 ```
 
 - Each script will have a usage explaining the options to use when executing them.

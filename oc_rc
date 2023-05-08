@@ -24,7 +24,8 @@ export PATH=$HOME/bin:$PATH
 
 __oc_ps1() {
   # Get current context
-  CONTEXT=$(oc config current-context | cut -d'/' -f1)
+  #CONTEXT=$(oc config current-context | cut -d'/' -f1)
+  CONTEXT=$(oc project -q 2>/dev/null)
   if [ -n "$CONTEXT" ]; then
     echo "${CONTEXT}"
   fi

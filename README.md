@@ -28,7 +28,7 @@ omcdownload.sh        -> Download OMC tool for analyzing must-gathers
 
 - Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the same `$HOME/cluster-<mycluster>` directory.  The script must be executed from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries get downloaded there.  
 
-- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that the `CLUSTERNAME` variable represents the unique OCP clustername. In my example, the `CLUSTERNAME` is `mycluster`.  The alias should also have the correct `CLUSTERPATH` configured pointing to the location containing the cluster's OCP client and installation files. The `CLUSTERPATH` directory, in this case, `$HOME/cluster-<mycluster>`, also contains the OCP binaries which will get included in the environment's `PATH`.
+- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that the `CLUSTERNAME` variable represents the unique OCP clustername. In my example, the `CLUSTERNAME` is `mycluster`.  The alias should also have the correct `CLUSTERPATH` configured pointing to the location containing the cluster's OCP client and installation files. The `CLUSTERPATH` directory, in this case, `$HOME/cluster-<mycluster>`, will get added to the environment's `PATH`.
 
 - The prompt will automatically be changed to include the current `CLUSTERNAME` and `PROJECT` that you are switched to.
 

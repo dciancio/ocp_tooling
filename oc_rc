@@ -19,7 +19,6 @@ export LC_COLLATE=C
 # Do not show single-quotes for directories/files with spaces
 export QUOTING_STYLE=literal
 
-SYSPATH=/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
 export PATH=$HOME/bin:$PATH
 
 __oc_ps1() {
@@ -33,12 +32,11 @@ __oc_ps1() {
 
 set_kubeconfig() {
 SESSIONPID=$$
-cp $HOME/cluster-${CLUSTERNAME}/auth/kubeconfig /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
-export KUBECONFIG=/tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
+[ -f $CLUSTERPATH/auth/kubeconfig ] && [ ! -f /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID} ] && cp $CLUSTERPATH/auth/kubeconfig /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID} && export KUBECONFIG=/tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
 export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[00m\]\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\[\033[01;35m\] [${CLUSTERNAME}:\$(__oc_ps1)]\[\033[00m\]$ "
 source <(oc completion bash)
 }
 
 export SAVEPATH=$PATH
 
-alias mycluster='CLUSTERNAME="mycluster"; export PATH=~/cluster-${CLUSTERNAME}:$SAVEPATH; set_kubeconfig'
+alias mycluster='CLUSTERNAME="mycluster"; CLUSTERPATH=~/cluster-${CLUSTERNAME}; export PATH=$CLUSTERPATH:$SAVEPATH; set_kubeconfig'

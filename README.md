@@ -26,13 +26,12 @@ omcdownload.sh        -> Download OMC tool for analyzing must-gathers
 
 - Ensure that you copy the `auth` sub-directory containing the admin `KUBECONFIG` file for each OCP cluster to your workstation under a separate directory, for example, `$HOME/cluster-<mycluster>`.
 
-- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the `CLUSTERPATH` directory, `$HOME/cluster-<mycluster>`. Make sure to execute `ocp4download.sh` script from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries get downloaded there as the `CLUSTERPATH` containing the binaries will get included in the environment's `PATH`.
+- Also, use the `ocp4download.sh` to download the `oc`, `kubectl`, and `openshift-install` binaries for the version of the cluster found in the same `$HOME/cluster-<mycluster>` directory.  The script must be executed from within the `$HOME/cluster-<mycluster>` directory to ensure that the binaries get downloaded there.  
 
-- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that the `CLUSTERNAME` variable represents the unique OCP clustername. In my example, the `CLUSTERNAME` is `mycluster`.  The alias should also have the correct `CLUSTERPATH` pointing to the location containing the cluster's OCP client and installation files.
+- Modify the `oc_rc` script to include an alias for every cluster you wish to switch to ensuring that the `CLUSTERNAME` variable represents the unique OCP clustername. In my example, the `CLUSTERNAME` is `mycluster`.  The alias should also have the correct `CLUSTERPATH` configured pointing to the location containing the cluster's OCP client and installation files. The `CLUSTERPATH` directory, in this case, `$HOME/cluster-<mycluster>`, also contains the OCP binaries which will get included in the environment's `PATH`.
 
 - The prompt will automatically be changed to include the current `CLUSTERNAME` and `PROJECT` that you are switched to.
 
 - The original admin `KUBECONFIG` authentication file found in `$HOME/cluster-mycluster` is copied under a temporary `KUBECONFIG` file in `/tmp` for your current `SESSIONID`. Therefore, the default `$HOME/.kube/config` file is never modified.  This ensures isolation for each terminal session into its own unique `KUBECONFIG` file.
 
 - You can optionally choose to login using kubeadmin or any other user relying on Oauth service and the temporary `KUBECONFIG` in `/tmp` will contain additional contexts reflecting each user login.
-

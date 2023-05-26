@@ -33,7 +33,7 @@ __oc_ps1() {
 set_kubeconfig() {
 SESSIONPID=$$
 [ -f $CLUSTERPATH/auth/kubeconfig ] && [ ! -f /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID} ] && cp $CLUSTERPATH/auth/kubeconfig /tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID} && export KUBECONFIG=/tmp/kubeconfig_${CLUSTERNAME}_${SESSIONPID}
-export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[00m\]\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\[\033[01;35m\] [${CLUSTERNAME}:\$(__oc_ps1)]\[\033[00m\]$ "
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[00m\]\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\[\033[01;35m\] [${CLUSTERNAME}:$(__oc_ps1)]\[\033[00m\]$ '
 source <(oc completion bash)
 }
 

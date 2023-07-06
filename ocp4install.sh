@@ -1,3 +1,5 @@
+#!/bin/bash
+
 OPTION=$1
 if [ "$OPTION" != "ic" ] && [ "$OPTION" != "man" ] && [ "$OPTION" != "ign" ] && [ "$OPTION" != "cl" ]; then
   echo "usage:  $0 <option=ic|man|ign|cl" >&2

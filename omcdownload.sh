@@ -1,3 +1,5 @@
+#!/bin/bash
+
 VER=$1
 pushd /tmp >/dev/null
 wget -q -e robots=off -r -nH --cut-dirs=3 --no-parent --reject="index.html*,latest" https://github.com/gmeghnag/omc/releases/
